@@ -4,8 +4,34 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+const articalsObject =  document.getElementsByClassName('media-post')
+const articalsArray = Object.values(articalsObject)
 
 
+articalsArray.forEach(article =>{
+  article.addEventListener("click", (event)=>{
+    
+    if (event.target.innerText === EMPTY_HEART){
+  
+      event.target.className = "activated-heart"
+      event.target.innerText = 
+        `
+          ${FULL_HEART}
+        `
+
+    }
+
+    if (event.target.innerText === FULL_HEART){
+      debugger
+      event.target.className = "like-glyph"
+      event.target.innerText = 
+      `
+      ${EMPTY_HEART}
+      `
+    
+    }
+   })
+})
 
 //------------------------------------------------------------------------------
 // Don't change the code below: this function mocks the server response
