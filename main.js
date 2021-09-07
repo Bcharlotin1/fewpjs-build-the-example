@@ -8,29 +8,36 @@ const articalsObject =  document.getElementsByClassName('media-post')
 const articalsArray = Object.values(articalsObject)
 
 
-articalsArray.forEach(article =>{
-  article.addEventListener("click", (event)=>{
-    
+ const heartArray = document.querySelectorAll(".like-glyph")
+console.log(heartArray)
+heartArray.forEach(heart =>{
+
+  heart.addEventListener("click", (event)=>{
+ 
     if (event.target.innerText === EMPTY_HEART){
+      mimicServerCall()
+      .then(resp =>{
+        document.getElementById("modal").className = ""
+        document.getElementById("modal").innerText = `${resp}`
+      })
   
       event.target.className = "activated-heart"
       event.target.innerText = 
-        `
-          ${FULL_HEART}
-        `
-
+        `${FULL_HEART}`
     }
 
-    // if (event.target.innerText === `\n${FULL_HEART}\n`){
-      
-    //   event.target.className = "like-glyph"
-    //   event.target.innerText = 
-    //   `
-    //   ${EMPTY_HEART}
-    //   `
+    else {
+      mimicServerCall()
+      .then(resp =>{
+        document.getElementById("modal").className = "hidden"
+        document.getElementById("modal").innerText = "error!"
+      })
+      event.target.className = "like-glyph"
+      event.target.innerText = 
+      `${EMPTY_HEART}`
+    }
+  })
     
-    // }
-   })
 })
 
 //------------------------------------------------------------------------------
@@ -41,6 +48,7 @@ function mimicServerCall(url="http://mimicServer.example.com", config={}) {
   return new Promise(function(resolve, reject) {
     setTimeout(function() {
       let isRandomFailure = Math.random() < .2
+      console.log(isRandomFailure)
       if (isRandomFailure) {
         reject("Random server error. Try again.");
       } else {
