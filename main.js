@@ -21,15 +21,15 @@ articalsArray.forEach(article =>{
 
     }
 
-    if (event.target.innerText === FULL_HEART){
-      debugger
-      event.target.className = "like-glyph"
-      event.target.innerText = 
-      `
-      ${EMPTY_HEART}
-      `
+    // if (event.target.innerText === `\n${FULL_HEART}\n`){
+      
+    //   event.target.className = "like-glyph"
+    //   event.target.innerText = 
+    //   `
+    //   ${EMPTY_HEART}
+    //   `
     
-    }
+    // }
    })
 })
 
